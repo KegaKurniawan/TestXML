@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TestXML</string>
+    <string name="choose_number">Please select co. number</string>
+    <string name="blank">  </string>
+    <string-array name="Quarter">
+        <item>Please choose quarter to show</item>
+        <item>Quarter 1</item>
+        <item>Quarter 2</item>
+        <item>Quarter 3</item>
+        <item>Quarter 4</item>
+    </string-array>
+    <string name="quarter_prompt">Please choose quarter to show</string>
+</resources>
