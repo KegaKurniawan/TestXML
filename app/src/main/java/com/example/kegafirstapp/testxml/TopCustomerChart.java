@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -67,6 +68,13 @@ public class TopCustomerChart extends Activity {
                 YAxis leftAxis = chart.getAxisLeft();
                 leftAxis.setStartAtZero(false);
 
+                // PAKE INI BIAR START GRAFIKNYA DARI ANGKA 0
+                chart.getAxisLeft().setAxisMinValue(0f);
+
+                XAxis xAxis = chart.getXAxis();
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setTextSize(10f);
+
                 chart.setData(data);
                 chart.setDescription("Sales");
                 chart.animateXY(2000, 2000);
@@ -119,6 +127,8 @@ public class TopCustomerChart extends Activity {
             rs = stmt.executeQuery();
             while (rs.next()){
                 String id = rs.getString("Name");
+                //BUAT MOTONG STRING INI
+                //String newId = id.substring(0, 3);
                 xAxis.add(id);
                 //BUAT NYARI BUG INI
                 //System.out.println(xAxis);
