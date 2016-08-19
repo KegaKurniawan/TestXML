@@ -76,7 +76,9 @@
         android:id="@+id/bSqlConnect"
         android:layout_alignTop="@+id/bTemp"
         android:layout_alignLeft="@+id/btnToJdom"
-        android:layout_alignStart="@+id/btnToJdom" />
+        android:layout_alignStart="@+id/btnToJdom"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -132,4 +134,15 @@
         android:layout_alignEnd="@+id/bLineChart"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Cust."
+        android:id="@+id/bTopCust"
+        android:layout_below="@+id/bQChart"
+        android:layout_alignLeft="@+id/bQChart"
+        android:layout_alignStart="@+id/bQChart"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

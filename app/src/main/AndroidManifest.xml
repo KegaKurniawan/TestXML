@@ -77,6 +77,11 @@
             android:label="testqrcode">
         </activity>
 
+        <activity
+            android:name=".TopCustomerChart"
+            android:label="topcustomerchart">
+        </activity>
+
     </application>
 
 </manifest>

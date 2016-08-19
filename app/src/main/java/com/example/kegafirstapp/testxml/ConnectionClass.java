@@ -15,7 +15,7 @@ import java.sql.DriverManager;
  */
 
 public class ConnectionClass {
-    String ip = "192.168.0.105";
+    String ip = "192.168.1.108";
     String classs = "net.sourceforge.jtds.jdbc.Driver";
     String db = "Demo Database NAV (9-0)";
     String un = "user2";
