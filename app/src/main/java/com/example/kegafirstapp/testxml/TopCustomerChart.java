@@ -120,9 +120,11 @@ public class TopCustomerChart extends Activity {
         int filling = 0;
         while(colorCounter!=0){
             colorLegend[filling] = colorArray[filling];
-            System.out.println("ini isi arraynya : "+colorArray[filling]);
+
+            //BUAT DEBUG DOANK
+            /*System.out.println("ini isi arraynya : "+colorArray[filling]);
             System.out.println("ini isi filling : "+filling);
-            System.out.println("ini isi arraynya : "+colorLegend[filling]);
+            System.out.println("ini isi arraynya : "+colorLegend[filling]);*/
             filling++;
             colorCounter--;
         }
@@ -132,7 +134,9 @@ public class TopCustomerChart extends Activity {
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(10f);
-        xAxis.setLabelsToSkip(0);
+
+        //INI BIAR KELIATAN SEMUA LABEL Xaxis nya
+        //xAxis.setLabelsToSkip(0);
 
         chart.setData(data);
         chart.setDescription("Sales");
