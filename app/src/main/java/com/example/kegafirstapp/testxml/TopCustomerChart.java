@@ -9,16 +9,21 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,7 +49,6 @@ public class TopCustomerChart extends Activity {
 
         spinYear = (Spinner) findViewById(R.id.YearSpin);
         spinTop = (Spinner) findViewById(R.id.TopSpin);
-
 
         spinTop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -94,10 +98,41 @@ public class TopCustomerChart extends Activity {
         // PAKE INI BIAR START GRAFIKNYA DARI ANGKA 0
         chart.getAxisLeft().setAxisMinValue(0f);
         chart.getLegend().setEnabled(true);
+        chart.getLegend().setWordWrapEnabled(true);
+
+        Legend l = chart.getLegend();
+        l.setFormSize(10f); // set the size of the legend forms/shapes
+        l.setForm(Legend.LegendForm.SQUARE); // set what type of form/shape should be used
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setTextSize(12f);
+        l.setTextColor(Color.BLACK);
+        l.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
+        l.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
+
+        // set custom labels and colors
+        String[] custName = new String[getCustomer().size()];
+        custName = getCustomer().toArray(custName);
+        int [] colorArray = getApplicationContext().getResources().getIntArray(R.array.rainbow);
+        System.out.println("ini array color : "+Arrays.toString(colorArray));
+
+        int colorCounter = (getCustomer().size());
+        int [] colorLegend = new int[colorCounter];
+        int filling = 0;
+        while(colorCounter!=0){
+            colorLegend[filling] = colorArray[filling];
+            System.out.println("ini isi arraynya : "+colorArray[filling]);
+            System.out.println("ini isi filling : "+filling);
+            System.out.println("ini isi arraynya : "+colorLegend[filling]);
+            filling++;
+            colorCounter--;
+        }
+        System.out.println("ini array color : "+Arrays.toString(colorLegend));
+        l.setCustom(colorLegend,custName);
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(10f);
+        xAxis.setLabelsToSkip(0);
 
         chart.setData(data);
         chart.setDescription("Sales");
@@ -105,8 +140,8 @@ public class TopCustomerChart extends Activity {
         chart.invalidate();
     }
 
-    private ArrayList<BarDataSet> getDataSet() {
-        ArrayList<BarDataSet> dataSets = null;
+    private ArrayList<IBarDataSet> getDataSet() {
+        ArrayList<IBarDataSet> dataSets = null;
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
 
         try{
@@ -128,8 +163,10 @@ public class TopCustomerChart extends Activity {
             e.printStackTrace();
         }
 
+        int[] barColor = getApplicationContext().getResources().getIntArray(R.array.rainbow);
+
         BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Total sales");
-        barDataSet1.setColor(Color.rgb(0, 0, 155));
+        barDataSet1.setColors(barColor);
 
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);

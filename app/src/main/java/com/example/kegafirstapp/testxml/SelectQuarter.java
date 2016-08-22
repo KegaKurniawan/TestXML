@@ -13,6 +13,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -115,8 +116,8 @@ public class SelectQuarter extends Activity{
 
     }
 
-    private ArrayList<BarDataSet> getDataSet() {
-        ArrayList<BarDataSet> dataSets = null;
+    private ArrayList<IBarDataSet> getDataSet() {
+        ArrayList<IBarDataSet> dataSets = null;
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
 
         getDataMonth(query, 0, valueSet1);

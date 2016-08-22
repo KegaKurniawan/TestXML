@@ -10,6 +10,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.sql.Connection;
@@ -78,7 +79,7 @@ public class QuarterChart extends Activity {
             Month.add("DECEMBER");
         }
 
-        BarData data = new BarData(Month, getDataSet());
+        BarData data = new BarData(Month, (IBarDataSet) getDataSet());
 
         //BIAR BISA NEGATIF MAKE INI KALO YANG 2.0.9
         YAxis leftAxis = chart.getAxisLeft();

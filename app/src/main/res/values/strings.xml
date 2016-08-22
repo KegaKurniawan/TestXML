@@ -14,13 +14,10 @@
     <string name="quarter_prompt">Please choose quarter to show</string>
 
     <string-array name="Year">
-        <item>Select year to show</item>
-        <item>2016</item>
         <item>2017</item>
     </string-array>
 
     <string-array name="Top">
-        <item>Select top customer</item>
         <item>Top 3</item>
         <item>Top 5</item>
         <item>Top 10</item>

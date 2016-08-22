@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.sql.Connection;
@@ -54,9 +55,8 @@ public class Chart_Line extends ActionBarActivity {
         chart.invalidate();
     }
 
-    private ArrayList<LineDataSet> getDataSet() {
-        ArrayList<LineDataSet> dataSets = null;
-
+    private ArrayList<ILineDataSet> getDataSet() {
+        ArrayList<ILineDataSet> dataSets = null;
         ArrayList<Entry> valueSet1 = new ArrayList<>();
         try{
             query = "SELECT [Target penjualan] FROM [dbo].[tabel_toko]";
