@@ -49,36 +49,7 @@ public class TopCustomerChart extends Activity {
         spinTop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String year = spinYear.getSelectedItem().toString();
-                String top = spinTop.getSelectedItem().toString();
-                connectionClass = new ConnectionClass();
-                BarChart chart = (BarChart) findViewById(R.id.chart);
-
-                query="select "+top+"* from (SELECT a.[Customer No_],[Name],SUM(a.[Sales (LCY)])  as amount\n" +
-                        "FROM [Demo Database NAV (9-0)].[dbo].[CRONUS International Ltd_$Cust_ Ledger Entry] a INNER JOIN [Demo Database NAV (9-0)].[dbo].[CRONUS International Ltd_$Customer] b \n" +
-                        "ON b.No_ = a.[Customer No_] \n" +
-                        "where [Posting Date] between '"+year+"/01/01' and '"+year+"/12/31'\n" +
-                        "GROUP BY a.[Customer No_],b.Name)B ORDER BY B.[amount] desc";
-
-                System.out.println(query);
-
-                BarData data = new BarData(getCustomer(), getDataSet());
-
-                //BIAR BISA NEGATIF MAKE INI KALO YANG 2.0.9
-                YAxis leftAxis = chart.getAxisLeft();
-                leftAxis.setStartAtZero(false);
-
-                // PAKE INI BIAR START GRAFIKNYA DARI ANGKA 0
-                chart.getAxisLeft().setAxisMinValue(0f);
-
-                XAxis xAxis = chart.getXAxis();
-                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                xAxis.setTextSize(10f);
-
-                chart.setData(data);
-                chart.setDescription("Sales");
-                chart.animateXY(2000, 2000);
-                chart.invalidate();
+                getTopCustomer();
             }
 
             @Override
@@ -86,6 +57,52 @@ public class TopCustomerChart extends Activity {
 
             }
         });
+
+        spinYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getTopCustomer();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void getTopCustomer(){
+        String year = spinYear.getSelectedItem().toString();
+        String top = spinTop.getSelectedItem().toString();
+        connectionClass = new ConnectionClass();
+        BarChart chart = (BarChart) findViewById(R.id.chart);
+
+        query="select "+top+"* from (SELECT a.[Customer No_],[Name],SUM(a.[Sales (LCY)])  as amount\n" +
+                "FROM [Demo Database NAV (9-0)].[dbo].[CRONUS International Ltd_$Cust_ Ledger Entry] a INNER JOIN [Demo Database NAV (9-0)].[dbo].[CRONUS International Ltd_$Customer] b \n" +
+                "ON b.No_ = a.[Customer No_] \n" +
+                "where [Posting Date] between '"+year+"/01/01' and '"+year+"/12/31'\n" +
+                "GROUP BY a.[Customer No_],b.Name)B ORDER BY B.[amount] desc";
+
+        System.out.println(query);
+
+        BarData data = new BarData(getCustomer(), getDataSet());
+
+        //BIAR BISA NEGATIF MAKE INI KALO YANG 2.0.9
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setStartAtZero(false);
+
+        // PAKE INI BIAR START GRAFIKNYA DARI ANGKA 0
+        chart.getAxisLeft().setAxisMinValue(0f);
+        chart.getLegend().setEnabled(true);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextSize(10f);
+
+        chart.setData(data);
+        chart.setDescription("Sales");
+        chart.animateXY(2000, 2000);
+        chart.invalidate();
     }
 
     private ArrayList<BarDataSet> getDataSet() {
