@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
     private final String URL2 = "http://localhost:55821/Service.asmx";
     private final String SOAP_ACTION = "http://tempuri.org/primaKe";
     private final String METHOD_NAME = "primaKe";
-    Button btnView,btnJdom,btnTemperature,btnSql,btnCustomer,btnChart,btnLineChart, btnQChart,btnQrCode,btnTopCustomer;
+    Button btnView,btnJdom,btnTemperature,btnSql,btnCustomer,btnChart,btnLineChart, btnQChart,btnQrCode,btnTopCustomer,btnSLChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
         btnQChart = (Button) findViewById(R.id.bQChart);
         btnQrCode = (Button) findViewById(R.id.bQRCode);
         btnTopCustomer = (Button) findViewById(R.id.bTopCust);
+        btnSLChart = (Button) findViewById(R.id.bSLChart);
 
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,6 +177,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),TopCustomerChart.class);
+                startActivity(i);
+            }
+        });
+
+        btnSLChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),SalesLineChart.class);
                 startActivity(i);
             }
         });

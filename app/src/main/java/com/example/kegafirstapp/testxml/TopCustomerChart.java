@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -15,13 +16,17 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +34,7 @@ import java.util.List;
 /**
  * Created by Kega on 8/19/2016.
  */
-public class TopCustomerChart extends Activity {
+public class TopCustomerChart extends ActionBarActivity{
 
     Spinner spinYear,spinTop;
     ConnectionClass connectionClass;
@@ -41,6 +46,9 @@ public class TopCustomerChart extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.top_chart);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Top Customer");
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -91,6 +99,9 @@ public class TopCustomerChart extends Activity {
 
         BarData data = new BarData(getCustomer(), getDataSet());
 
+        //BUAT BIKIN CUSTOM CURRENCY
+        //data.setValueFormatter(new MyValueFormatter());
+
         //BIAR BISA NEGATIF MAKE INI KALO YANG 2.0.9
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setStartAtZero(false);
@@ -126,6 +137,9 @@ public class TopCustomerChart extends Activity {
             System.out.println("ini isi filling : "+filling);
             System.out.println("ini isi arraynya : "+colorLegend[filling]);*/
             filling++;
+            if(filling>11){
+                filling = 0;
+            }
             colorCounter--;
         }
         System.out.println("ini array color : "+Arrays.toString(colorLegend));
@@ -195,5 +209,20 @@ public class TopCustomerChart extends Activity {
             e.printStackTrace();
         }
         return xAxis;
+    }
+
+    public class MyValueFormatter implements IValueFormatter {
+
+        private DecimalFormat mFormat;
+
+        public MyValueFormatter() {
+            mFormat = new DecimalFormat("###,###,##0.0"); // use one decimal
+        }
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            // write your logic here
+            return mFormat.format(value) + " $"; // e.g. append a dollar-sign
+        }
     }
 }

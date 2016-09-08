@@ -82,6 +82,11 @@
             android:label="topcustomerchart">
         </activity>
 
+        <activity
+            android:name=".SalesLineChart"
+            android:label="saleslinechart">
+        </activity>
+
     </application>
 
 </manifest>
