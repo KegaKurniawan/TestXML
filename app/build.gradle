@@ -40,4 +40,6 @@ dependencies {
     //compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.5'
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
+    compile 'com.github.sundeepk:compact-calendar-view:1.8.3'
+    //compile 'com.github.sundeepk:compact-calendar-view:1.9.1'
 }

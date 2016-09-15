@@ -87,6 +87,21 @@
             android:label="saleslinechart">
         </activity>
 
+        <activity
+            android:name=".JogjaLineChart"
+            android:label="jogjalinechart">
+        </activity>
+
+        <activity
+            android:name=".CalenderTest"
+            android:label="calendartest">
+        </activity>
+
+        <activity
+            android:name=".CustomerListCalendar"
+            android:label="customerlistcalendar">
+        </activity>
+
     </application>
 
 </manifest>

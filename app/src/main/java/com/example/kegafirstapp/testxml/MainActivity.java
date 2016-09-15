@@ -24,7 +24,8 @@ public class MainActivity extends Activity {
     private final String URL2 = "http://localhost:55821/Service.asmx";
     private final String SOAP_ACTION = "http://tempuri.org/primaKe";
     private final String METHOD_NAME = "primaKe";
-    Button btnView,btnJdom,btnTemperature,btnSql,btnCustomer,btnChart,btnLineChart, btnQChart,btnQrCode,btnTopCustomer,btnSLChart;
+    Button btnView,btnJdom,btnTemperature,btnSql,btnCustomer,btnChart,btnLineChart, btnQChart,btnQrCode,btnTopCustomer,
+            btnSLChart,btnLiveChart,btnCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class MainActivity extends Activity {
         btnQrCode = (Button) findViewById(R.id.bQRCode);
         btnTopCustomer = (Button) findViewById(R.id.bTopCust);
         btnSLChart = (Button) findViewById(R.id.bSLChart);
+        btnLiveChart = (Button) findViewById(R.id.bLiveChart);
+        btnCalendar = (Button) findViewById(R.id.bCalendar);
 
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +188,22 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),SalesLineChart.class);
+                startActivity(i);
+            }
+        });
+
+        btnLiveChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),JogjaLineChart.class);
+                startActivity(i);
+            }
+        });
+
+        btnCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),CalenderTest.class);
                 startActivity(i);
             }
         });

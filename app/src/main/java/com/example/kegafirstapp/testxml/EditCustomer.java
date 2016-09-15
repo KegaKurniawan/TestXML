@@ -40,6 +40,9 @@ public class EditCustomer extends Activity {
         textAddress = (EditText) findViewById(R.id.txtAddress);
         textCity = (EditText) findViewById(R.id.txtCity);
 
+        //INI BUAT DISABLE EDIT TEXT
+        //textNo.setEnabled(false);
+
         textName.setText(passedVar);
 
         try{

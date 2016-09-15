@@ -74,11 +74,9 @@
         android:layout_height="wrap_content"
         android:text="Sql Connect"
         android:id="@+id/bSqlConnect"
-        android:layout_alignTop="@+id/bTemp"
+        android:layout_below="@+id/btnToJdom"
         android:layout_alignLeft="@+id/btnToJdom"
-        android:layout_alignStart="@+id/btnToJdom"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignStart="@+id/btnToJdom" />
 
     <Button
         android:layout_width="wrap_content"
@@ -96,11 +94,11 @@
         android:layout_height="wrap_content"
         android:text="TestChart"
         android:id="@+id/bChart"
-        android:layout_alignTop="@+id/bCustomer"
+        android:layout_below="@+id/bSqlConnect"
+        android:layout_alignRight="@+id/bSqlConnect"
+        android:layout_alignEnd="@+id/bSqlConnect"
         android:layout_alignLeft="@+id/bSqlConnect"
-        android:layout_alignStart="@+id/bSqlConnect"
-        android:layout_alignRight="@+id/btnToJdom"
-        android:layout_alignEnd="@+id/btnToJdom" />
+        android:layout_alignStart="@+id/bSqlConnect" />
 
     <Button
         android:layout_width="wrap_content"
@@ -156,4 +154,25 @@
         android:layout_alignEnd="@+id/bQRCode"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Live LChart"
+        android:id="@+id/bLiveChart"
+        android:layout_alignTop="@+id/bSLChart"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:id="@+id/bCalendar"
+        android:layout_below="@+id/bChart"
+        android:layout_alignRight="@+id/bChart"
+        android:layout_alignEnd="@+id/bChart"
+        android:layout_alignLeft="@+id/bLiveChart"
+        android:layout_alignStart="@+id/bLiveChart" />
+
 </RelativeLayout>

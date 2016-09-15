@@ -21,12 +21,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
- * Created by Kega on 9/7/2016.
+ * Created by Kega on 9/13/2016.
  */
-public class SalesLineChart extends ActionBarActivity {
+public class JogjaLineChart extends ActionBarActivity {
 
     Spinner spinYear,spinQuarter;
-    ConnectionClass3 connectionClass3;
+    ConnectionClass4 connectionClass4;
     PreparedStatement stmt;
     ResultSet rs;
     String query;
@@ -38,7 +38,7 @@ public class SalesLineChart extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sales_line_chart);
+        setContentView(R.layout.jogja_line_chart);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Sales Chart");
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
@@ -50,6 +50,7 @@ public class SalesLineChart extends ActionBarActivity {
 
         spinYear = (Spinner) findViewById(R.id.YearSpin);
         spinQuarter = (Spinner) findViewById(R.id.QuarterSpin);
+
 
         spinYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -70,7 +71,6 @@ public class SalesLineChart extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 getTable();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -82,15 +82,15 @@ public class SalesLineChart extends ActionBarActivity {
         sales_value = new ArrayList<>();
         month_list = new ArrayList<>();
         String year = spinYear.getSelectedItem().toString();
-        connectionClass3 = new ConnectionClass3();
-        query = "select b.Bulan, isnull(c.jumlah, 0) as jumlah from [Demo Database NAV (9-0)].[dbo].[Android_test_View_1] b LEFT JOIN\n" +
+        connectionClass4 = new ConnectionClass4();
+        query = "select b.Bulan, isnull(c.jumlah, 0) as jumlah from [JOGJA BAY - Live].[dbo].[Android_test_View_1] b LEFT JOIN\n" +
                 "(select substring(convert(varchar,a.[Posting Date],126),6, 2) as bulan, sum (a.[Sales (LCY)]) as jumlah \n" +
-                "from [Demo Database NAV (9-0)].[dbo].[CRONUS International Ltd_$Cust_ Ledger Entry] a where year(a.[Posting Date]) = '"+year+"' " +
+                "from [JOGJA BAY - Live].[dbo].[PT_ TAMAN WISATA JOGJA$Cust_ Ledger Entry] a where year(a.[Posting Date]) = '"+year+"' " +
                 "group by substring(convert(varchar,[Posting Date],126),6, 2)) c  \n" +
                 "ON c.bulan = b.no order by b.no";
         try{
 
-            Connection con = connectionClass3.CONN();
+            Connection con = connectionClass4.CONN();
             stmt = con.prepareStatement(query);
             rs = stmt.executeQuery();
             while (rs.next()){
@@ -104,6 +104,8 @@ public class SalesLineChart extends ActionBarActivity {
             e.printStackTrace();
         }
 
+        System.out.println("ini isi value : "+sales_value);
+        System.out.println("ini isi bulannya : "+month_list);
     }
 
     private void getTable(){
