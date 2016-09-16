@@ -53,8 +53,17 @@ public class CustomerListCalendar extends ListActivity {
     private void fill_list() {
         ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
         connectionClass4 = new ConnectionClass4();
+        /*
         query = "SELECT [Bill-to Name] FROM [JOGJA BAY - Live].[dbo].[PT_ TAMAN WISATA JOGJA$Sales Header] " +
                 "where ([Tanggal Aktivitas]) = '"+passedVar+"'";
+        */
+
+        query = "Select [Bill-to Name] From\n" +
+                "(SELECT [Bill-to Name],[Tanggal Aktivitas] FROM [JOGJA BAY - Live].[dbo].[PT_ TAMAN WISATA JOGJA$Sales Invoice Header]\n" +
+                "UNION\n" +
+                "SELECT [Bill-to Name],[Tanggal Aktivitas] FROM [JOGJA BAY - Live].[dbo].[PT_ TAMAN WISATA JOGJA$Sales Header]) as t1\n" +
+                "where t1.[Tanggal Aktivitas] = '"+passedVar+"'";
+
         try{
 
             Connection con = connectionClass4.CONN();
